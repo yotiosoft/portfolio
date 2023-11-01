@@ -1,7 +1,7 @@
-const window_mergin = 50;
-var next_window_x = 50;
-var next_window_y = 50;
-var before_window_y = 50;
+var window_mergin = 50;
+var next_window_x = window_mergin ;
+var next_window_y = window_mergin ;
+var before_window_y = window_mergin ;
 
 function makeWindowAutoPos(title, iframe_url, width, height) {
     var position_x = next_window_x;
@@ -11,6 +11,12 @@ function makeWindowAutoPos(title, iframe_url, width, height) {
         position_x = window_mergin;
         position_y = next_window_y;
         before_window_y = next_window_y;
+    }
+    if (position_y > window.innerHeight) {
+        window_mergin = window_mergin * 1.5;
+        position_x = window_mergin;
+        position_y = window_mergin;
+        before_window_y = window_mergin;
     }
     next_window_x = position_x + width + window_mergin;
     next_window_y = position_y + height + window_mergin;
