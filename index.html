@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsPanel</title>
+    <!-- loading jsPanel css -->
+    <link href="jspanel/dist/jspanel.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Your HTML goes here -->
+
+    <!-- loading jsPanel javascript -->
+    <script src="jspanel/dist/jspanel.js"></script>
+    <!-- optionally load jsPanel extensions -->
+    <script src="jspanel/dist/extensions/contextmenu/jspanel.contextmenu.js"></script>
+    <script src="jspanel/dist/extensions/hint/jspanel.hint.js"></script>
+    <script src="jspanel/dist/extensions/modal/jspanel.modal.js"></script>
+    <script src="jspanel/dist/extensions/tooltip/jspanel.tooltip.js"></script>
+    <script src="jspanel/dist/extensions/dock/jspanel.dock.js"></script>
+
+    <!-- my window script -->
+    <script src="js/window.js"></script>
+
+    <script>
+        makeWindow("Test", "https://yotiosoft.com", 800, 500);
+    </script>
+</body>
+</html>
