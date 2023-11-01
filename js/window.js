@@ -1,6 +1,20 @@
-function makeWindowRandPos(title, iframe_url, width, height) {
-    var position_x = window.innerWidth/2 - width/2 + (Math.random()*100);
-    var position_y = window.innerHeight/2 - height/2 + (Math.random()*100);
+const window_mergin = 50;
+var next_window_x = 50;
+var next_window_y = 50;
+var before_window_y = 50;
+
+function makeWindowAutoPos(title, iframe_url, width, height) {
+    var position_x = next_window_x;
+    var position_y = before_window_y;
+
+    if (position_x + width/2 > window.innerWidth) {
+        position_x = window_mergin;
+        position_y = next_window_y;
+        before_window_y = next_window_y;
+    }
+    next_window_x = position_x + width + window_mergin;
+    next_window_y = position_y + height + window_mergin;
+
     makeWindow(title, iframe_url, width, height, position_x, position_y);
 }
 
