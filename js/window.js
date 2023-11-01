@@ -1,7 +1,10 @@
-function makeWindow(title, iframe_url, width, height) {
+function makeWindowRandPos(title, iframe_url, width, height) {
     var position_x = window.innerWidth/2 - width/2 + (Math.random()*100);
     var position_y = window.innerHeight/2 - height/2 + (Math.random()*100);
+    makeWindow(title, iframe_url, width, height, position_x, position_y);
+}
 
+function makeWindow(title, iframe_url, width, height, position_x, position_y) {
     console.log(Math.random());
     console.log(window.innerWidth);
     console.log(window.innerHeight);
