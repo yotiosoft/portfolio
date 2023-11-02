@@ -48,6 +48,6 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y) {
             offsetX: position_x,
             offsetY: position_y
         },
-        content: '<iframe src="'+iframe_url+'" style="width: 100%; height: 100%;"></iframe>',
+        content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
     });
 }

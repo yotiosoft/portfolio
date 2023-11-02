@@ -1,3 +1,14 @@
 body {
     background-color: gray;
 }
+
+.window_frame {
+    width: 100%;
+    height: 100%;
+    
+    vertical-align: bottom;
+}
+
+.jsPanel-content {
+    overflow: hidden;
+}
