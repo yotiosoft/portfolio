@@ -3,6 +3,10 @@ p {
     margin-bottom: 5px;
 }
 
+ul {
+    padding-left: 30px;
+}
+
 .gaming {
     animation: rainbow 2s ease infinite;
 }
@@ -25,7 +29,7 @@ p {
 }
 
 .block {
-    padding-top: 20px;
+    padding-top: 30px;
     font-family: 'Courier New', Courier, monospace;
 }
 .block a {
@@ -36,4 +40,8 @@ p {
 .block p {
     color: white;
     font-weight: bold;
+}
+
+.block .text {
+    margin-left: 5px;
 }
