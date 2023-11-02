@@ -4,6 +4,13 @@ var next_window_y = window_mergin ;
 var before_window_y = window_mergin ;
 
 function makeWindowAutoPos(title, iframe_url, width, height) {
+    if (width + window_mergin * 2 > window.innerWidth) {
+        width = window.innerWidth - window_mergin * 2;
+    }
+    if (height + window_mergin * 2 > window.innerHeight) {
+        height = window.innerHeight - window_mergin * 2;
+    }
+
     var position_x = next_window_x;
     var position_y = before_window_y;
 
