@@ -3,7 +3,7 @@ var next_window_x = window_mergin ;
 var next_window_y = window_mergin ;
 var before_window_y = window_mergin ;
 
-function makeWindowAutoPos(title, iframe_url, width, height) {
+function makeWindowAutoPos(title, iframe_url, width, height, maximize) {
     if (width + window_mergin * 2 > window.innerWidth) {
         width = window.innerWidth - window_mergin * 2;
     }
@@ -28,10 +28,10 @@ function makeWindowAutoPos(title, iframe_url, width, height) {
     next_window_x = position_x + width + window_mergin;
     next_window_y = position_y + height + window_mergin;
 
-    makeWindow(title, iframe_url, width, height, position_x, position_y);
+    makeWindow(title, iframe_url, width, height, position_x, position_y, maximize);
 }
 
-function makeWindow(title, iframe_url, width, height, position_x, position_y) {
+function makeWindow(title, iframe_url, width, height, position_x, position_y, maximize) {
     console.log(Math.random());
     console.log(window.innerWidth);
     console.log(window.innerHeight);
@@ -39,15 +39,30 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y) {
     console.log(position_y);
 
     // create a default jsPanel
-    jsPanel.create({
-        headerTitle: title,
-        panelSize: width+" "+height,
-        position: {
-            my:      "left-top",
-            at:      "left-top",
-            offsetX: position_x,
-            offsetY: position_y
-        },
-        content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
-    });
+    if (!maximize) {
+        return jsPanel.create({
+            headerTitle: title,
+            panelSize: width+" "+height,
+            position: {
+                my:      "left-top",
+                at:      "left-top",
+                offsetX: position_x,
+                offsetY: position_y
+            },
+            content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
+        });
+    }
+    else {
+        return jsPanel.create({
+            headerTitle: title,
+            panelSize: width+" "+height,
+            position: {
+                my:      "left-top",
+                at:      "left-top",
+                offsetX: position_x,
+                offsetY: position_y
+            },
+            content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
+        }).maximize();
+    }
 }

@@ -25,14 +25,22 @@
     <script src="js/window.js"></script>
 
     <script>
-        // HP
-        makeWindowAutoPos("Welcome", "./subpages/welcome/", 800, 500);
+        if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
+            // スマホ用の配置
+            // HP
+            makeWindowAutoPos("Welcome", "./subpages/welcome/", 400, 500, true);
+        }
+        else {
+            // その他（PCなど）
+            // HP
+            makeWindowAutoPos("Welcome", "./subpages/welcome/", 800, 500, false);
 
-        // terminal
-        makeWindowAutoPos("Terminal", "https://ysh.yotiosoft.com", 500, 500);
+            // terminal
+            makeWindowAutoPos("Terminal", "https://ysh.yotiosoft.com", 500, 500, false);
 
-        // terminal
-        makeWindowAutoPos("Information", "./subpages/information/", 400, 160);
+            // terminal
+            makeWindowAutoPos("Information", "./subpages/information/", 400, 160, false);
+        }
     </script>
 </body>
 </html>
