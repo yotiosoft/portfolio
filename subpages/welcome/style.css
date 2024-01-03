@@ -5,6 +5,7 @@ p {
 
 ul {
     padding-left: 30px;
+    margin-bottom: 0px;
 }
 
 .gaming {
@@ -29,7 +30,7 @@ ul {
 }
 
 .block {
-    padding-top: 30px;
+    padding-bottom: 30px;
     font-family: 'Courier New', Courier, monospace;
 }
 .block a {
