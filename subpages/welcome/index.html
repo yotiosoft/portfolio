@@ -16,10 +16,21 @@
             padding-right: 5px;
         }
     </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="3d.js"></script>
 </head>
 <body>
     <div class="block">
-        <img src="../../img/icon.svg" alt="icon" width="100px" height="100px">
+        <!--<img src="../../img/icon.svg" alt="icon" width="100px" height="100px">-->
+        <canvas id="myCanvas" style="width: 400px; height: 400px;"></canvas>
         <p class="gaming name">yotio</p>
         <div style="margin-top: 20px;"></div>
         <a href="./profile.html">Profile</a>
