@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
     scene.background = new THREE.Color(0x273c75);
 
     const loader = new GLTFLoader();
-    loader.load('/img/3d_icon.glb', function (gltf) {
+    loader.load('../../img/3d_icon.glb', function (gltf) {
         scene.add(gltf.scene);
         
         renderer.setAnimationLoop( animate );
