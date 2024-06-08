@@ -4,6 +4,13 @@ var next_window_y = window_mergin ;
 var before_window_y = window_mergin ;
 var window_id = 0;
 
+var target_main = document.getElementById("main_body");
+document.addEventListener("built", function(e) {
+    console.log(e);
+    console.log("event from window, id: " + e.target.id);
+    console.log("event from window, id: " + e.detail.id);
+});
+
 function makeWindowAutoPos(title, iframe_url, width, height, maximize) {
     if (width + window_mergin * 2 > window.innerWidth) {
         width = window.innerWidth - window_mergin * 2;
@@ -40,11 +47,6 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y, ma
     console.log(position_y);
 
     window_id++;
-    var target_main = document.getElementById("main_body");
-    const event = new Event("built_" + window_id);
-    target_main.addEventListener("built_" + window_id, function() {
-        console.log("event from window " + window_id);
-    }, false);
 
     // create a default jsPanel
     if (!maximize) {
@@ -59,7 +61,11 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y, ma
             },
             content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
             callback: function(panel) {
-                target_main.dispatchEvent(event);
+                const event = new CustomEvent("built", {
+                    bubbles: true,
+                    detail: { id: window_id },
+                });
+                panel.dispatchEvent(event);
                 console.log(target_main);
                 console.log("new event built");
             }
