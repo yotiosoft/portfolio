@@ -4,7 +4,6 @@ var next_window_y = window_mergin ;
 var before_window_y = window_mergin ;
 var window_id = 0;
 
-var target_main = document.getElementById("main_body");
 document.addEventListener("built", function(e) {
     console.log(e);
     console.log("event from window, id: " + e.target.id);
@@ -61,13 +60,45 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y, ma
             },
             content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
             callback: function(panel) {
-                const event = new CustomEvent("built", {
-                    bubbles: true,
-                    detail: { id: window_id },
-                });
-                panel.dispatchEvent(event);
-                console.log(target_main);
-                console.log("new event built");
+                console.log(panel);
+                const panel_content = panel.getElementsByClassName("jsPanel-content")[0];
+                panel_content.onload = function() {
+                    console.log(panel_content);
+                    const panel_iframe = panel_content.getElementsByClassName("window_frame")[0];
+                    panel_iframe.onload = function() {
+                        const panel_iframe_content = panel_iframe.contentWindow;
+                        //const panel_links = panel_iframe_content.getElementsByTagName("a");
+                        console.log(panel_iframe);
+                        console.log(panel_iframe_content);
+                        panel_iframe_content.onload = function() {
+                            const panel_links = panel_iframe_content.getElementsByTagName("a");
+                            console.log(panel_links);
+                            for (let link of panel_links) {
+                                link.addEventListener("click", function(e) {
+                                    console.log("click link");
+                                    const event = new CustomEvent("built", {
+                                        bubbles: true,
+                                        detail: { id: window_id, link: link.href },
+                                    });
+                                    panel.dispatchEvent(event);
+                                });
+                            }
+                        };
+                    };
+                };
+                //console.log(panel_links);
+                /*
+                for (let link of links) {
+                    link.addEventListener("click", function(e) {
+                        console.log("click link");
+                        const event = new CustomEvent("built", {
+                            bubbles: true,
+                            detail: { id: window_id, link: link.href },
+                        });
+                        panel.dispatchEvent(event);
+                    });
+                }
+                */
             }
         });
     }
