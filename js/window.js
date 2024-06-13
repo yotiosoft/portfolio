@@ -50,6 +50,9 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y, ma
                 offsetY: position_y
             },
             content: '<iframe class="window_frame" src="'+iframe_url+'"></iframe>',
+            callback: function(panel) {
+                console.log(panel);
+            },
         });
     }
     else {
