@@ -46,3 +46,15 @@ ul {
 .block .text {
     margin-left: 5px;
 }
+
+.commentary {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+sup {
+    color: white;
+    font-weight: bold;
+}
