@@ -42,8 +42,6 @@
             // Information
             makeWindowAutoPos("Information", "./subpages/information/", 400, 160, false);
 
-            makeWindowAutoPos("Squash", "./subpages/squash/", 400, 400, false);
-
             // reset next window position
             resetWindowPos();
         }
@@ -69,6 +67,11 @@
         <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Clock', './subpages/clock/', 300, 160, false)">
             <img src="img/clock.svg" alt="icon" width="50px" height="50px">
             Clock
+        </div>
+
+        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Squash', './subpages/squash/', 400, 400, false)">
+            <img src="img/tennis.svg" alt="icon" width="50px" height="50px">
+            Squash
         </div>
     </div>
 </body>
