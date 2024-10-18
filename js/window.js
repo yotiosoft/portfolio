@@ -1,4 +1,5 @@
 var window_mergin = 50;
+var window_start_pos = window_mergin;
 var next_window_x = window_mergin ;
 var next_window_y = window_mergin ;
 var before_window_y = window_mergin ;
@@ -10,6 +11,13 @@ document.addEventListener("built", function(e) {
     console.log("event from window, id: " + e.target.id);
     console.log("event from window, id: " + e.detail.id);
 });
+
+function resetWindowPos() {
+    window_start_pos = window_start_pos + 50;
+    next_window_x = window_start_pos;
+    next_window_y = window_start_pos;
+    before_window_y = window_start_pos;
+}
 
 function makeWindowAutoPos(title, iframe_url, width, height, maximize) {
     if (width + window_mergin * 2 > window.innerWidth) {
@@ -23,18 +31,18 @@ function makeWindowAutoPos(title, iframe_url, width, height, maximize) {
     var position_y = before_window_y;
 
     if (position_x + width/2 > window.innerWidth) {
-        position_x = window_mergin;
+        position_x = window_start_pos;
         position_y = next_window_y;
         before_window_y = next_window_y;
     }
     if (position_y > window.innerHeight) {
-        window_mergin = window_mergin * 1.5;
-        position_x = window_mergin;
-        position_y = window_mergin;
-        before_window_y = window_mergin;
+        window_start_pos = window_start_pos + 50;
+        position_x = window_start_pos;
+        position_y = window_start_pos;
+        before_window_y = window_start_pos;
     }
-    next_window_x = position_x + width + window_mergin;
-    next_window_y = position_y + height + window_mergin;
+    next_window_x = position_x + width + window_start_pos;
+    next_window_y = position_y + height + window_start_pos;
 
     makeWindow(title, iframe_url, width, height, position_x, position_y, maximize);
 }
