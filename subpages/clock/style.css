@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "DSEG7ModernMini-Bold";
+    src:
+      url("/fonts/DSEG7ModernMini-Bold.woff2") format("woff2"),
+      url("/fonts/DSEG7ModernMini-Bold.woff") format("woff");
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    margin: 0;
+    display: table;
+}
+
+#clock_area {
+    font-family: "DSEG7ModernMini-Bold", sans-serif;
+    color: white;
+    background-color: black;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#clock_date {
+    font-size: large;
+}
+
+#clock_time {
+    font-size: xx-large;
+}
+
+.clock_text {
+    margin: 20px;
+}
