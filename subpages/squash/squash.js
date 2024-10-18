@@ -71,23 +71,17 @@ function update(ctx, ball_x, ball_y, racket_x) {
     draw_racket(ctx, racket_x);
 }
 
-addEventListener("DOMContentLoaded", function() {
-    const canvas_parent = document.getElementById('squash_game');
-    const canvas = document.createElement('canvas');
-    canvas_parent.appendChild(canvas);
+// 文字の表示
+function print_text(print_obj, text) {
+    print_obj.innerHTML = text;
+    print_obj.style.display = 'inline';
+}
+function hide_text(print_obj) {
+    print_obj.style.display = 'none';
+}
 
-    // 初期化
-    const ctx = init_squash(canvas);
-    draw_ball(ctx, width / 2 - ball_size / 2, racket_y - ball_size);
-    var racket_x = width / 2 - racket_width / 2;
-    draw_racket(ctx, racket_x);
-
-    // 玉の初期移動
-    var ball_x = width / 2 - ball_size / 2;
-    var ball_y = racket_y - ball_size;
-    var dx = -10;
-    var dy = -10;
-
+// ゲーム
+function game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj) {
     // ラケットの移動
     canvas.onmousemove = ev => {
         racket_x = ev.offsetX;
@@ -115,13 +109,46 @@ addEventListener("DOMContentLoaded", function() {
         if (game_over) {
             // ループを止める
             clearInterval(loop);
+
+            // ゲームオーバー
+            print_text(print_obj, 'Game Over<br>click to restart');
+
+            // 再スタート -> 再読み込み
+            canvas_parent.onclick = ev => {
+                location.reload();
+            }
         }
     }, 1000 / 30);
+}
 
-    // ゲームオーバー
-    // canvas の中央に表示
-    var game_over_obj = document.createElement('div');
-    game_over_obj.className = 'game_over_print';
-    game_over_obj.innerHTML = 'Game Over';
-    canvas_parent.appendChild(game_over_obj);
+addEventListener("DOMContentLoaded", function() {
+    const canvas_parent = document.getElementById('squash_game');
+    const canvas = document.createElement('canvas');
+    canvas.className = 'squash_canvas';
+    canvas_parent.appendChild(canvas);
+
+    // 初期化
+    const ctx = init_squash(canvas);
+    draw_ball(ctx, width / 2 - ball_size / 2, racket_y - ball_size);
+    var racket_x = width / 2 - racket_width / 2;
+    draw_racket(ctx, racket_x);
+
+    // 玉の初期移動
+    var ball_x = width / 2 - ball_size / 2;
+    var ball_y = racket_y - ball_size;
+    var dx = -10;
+    var dy = -10;
+
+    // 文字表示用（非表示）
+    var print_obj = document.createElement('div');
+    print_obj.className = 'over_canvas_print';
+    canvas_parent.appendChild(print_obj);
+
+    // クリックでスタート
+    print_text(print_obj, 'click to start');
+    canvas.onclick = ev => {
+        hide_text(print_obj);
+        clear_background(ctx);
+        game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj);
+    }
 });
