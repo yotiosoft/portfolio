@@ -27,7 +27,7 @@ function clock_time() {
 }
 
 // 表示
-addEventListener("load", function() {
+addEventListener("DOMContentLoaded", function() {
     setInterval(function() {
         document.getElementById("clock_date").innerHTML = clock_date();
         document.getElementById("clock_time").innerHTML = clock_time();
