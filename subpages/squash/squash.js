@@ -10,7 +10,13 @@ function clear_background(ctx) {
     ctx.fillStyle = 'silver';
     ctx.fillRect(0, 0, width, height);
 }
-function init_squash(canvas) {
+function init_squash() {
+    // キャンバスの作成
+    const canvas_parent = document.getElementById('squash_game');
+    const canvas = document.createElement('canvas');
+    canvas.className = 'squash_canvas';
+    canvas_parent.appendChild(canvas);
+
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
 
@@ -19,7 +25,12 @@ function init_squash(canvas) {
     // 背景色
     clear_background(ctx);
 
-    return canvas, ctx;
+    // 文字表示用（非表示）
+    var print_obj = document.createElement('div');
+    print_obj.className = 'over_canvas_print';
+    canvas_parent.appendChild(print_obj);
+
+    return [canvas, ctx, print_obj];
 }
 
 // 玉の描画
@@ -81,6 +92,34 @@ function hide_text(print_obj) {
 }
 
 // ゲーム
+function ready(canvas, ctx, print_obj, start_immidiately) {
+    draw_ball(ctx, width / 2 - ball_size / 2, racket_y - ball_size);
+    var racket_x = width / 2 - racket_width / 2;
+    draw_racket(ctx, racket_x);
+
+    // 玉の初期移動
+    var ball_x = width / 2 - ball_size / 2;
+    var ball_y = racket_y - ball_size;
+    var dx = -10;
+    var dy = -10;
+
+    // クリックでスタート
+    if (start_immidiately) {
+        hide_text(print_obj);
+        clear_background(ctx);
+        game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj);
+    }
+    else {
+        print_text(print_obj, 'click to start');
+        window.onclick = ev => {
+            hide_text(print_obj);
+            clear_background(ctx);
+            window.onclick = null;
+            game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj);
+        }
+    }
+}
+
 function game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj) {
     // ラケットの移動
     canvas.onmousemove = ev => {
@@ -114,41 +153,18 @@ function game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj) {
             print_text(print_obj, 'Game Over<br>click to restart');
 
             // 再スタート -> 再読み込み
-            canvas_parent.onclick = ev => {
-                location.reload();
+            window.onclick = ev => {
+                window.onclick = null;
+                ready(canvas, ctx, print_obj, true);
             }
         }
     }, 1000 / 30);
 }
 
 addEventListener("DOMContentLoaded", function() {
-    const canvas_parent = document.getElementById('squash_game');
-    const canvas = document.createElement('canvas');
-    canvas.className = 'squash_canvas';
-    canvas_parent.appendChild(canvas);
-
     // 初期化
-    const ctx = init_squash(canvas);
-    draw_ball(ctx, width / 2 - ball_size / 2, racket_y - ball_size);
-    var racket_x = width / 2 - racket_width / 2;
-    draw_racket(ctx, racket_x);
+    var canvas, ctx;
+    [canvas, ctx, print_obj] = init_squash();
 
-    // 玉の初期移動
-    var ball_x = width / 2 - ball_size / 2;
-    var ball_y = racket_y - ball_size;
-    var dx = -10;
-    var dy = -10;
-
-    // 文字表示用（非表示）
-    var print_obj = document.createElement('div');
-    print_obj.className = 'over_canvas_print';
-    canvas_parent.appendChild(print_obj);
-
-    // クリックでスタート
-    print_text(print_obj, 'click to start');
-    canvas.onclick = ev => {
-        hide_text(print_obj);
-        clear_background(ctx);
-        game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj);
-    }
+    ready(canvas, ctx, print_obj, false);
 });

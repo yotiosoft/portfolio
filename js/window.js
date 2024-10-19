@@ -6,11 +6,13 @@ var before_window_y = window_mergin ;
 var window_id = 0;
 
 var target_main = document.getElementById("main_body");
+/*
 document.addEventListener("built", function(e) {
     console.log(e);
     console.log("event from window, id: " + e.target.id);
     console.log("event from window, id: " + e.detail.id);
 });
+*/
 
 function resetWindowPos() {
     window_start_pos = window_start_pos + 50;
@@ -48,11 +50,13 @@ function makeWindowAutoPos(title, iframe_url, width, height, maximize) {
 }
 
 function makeWindow(title, iframe_url, width, height, position_x, position_y, maximize) {
+    /*
     console.log(Math.random());
     console.log(window.innerWidth);
     console.log(window.innerHeight);
     console.log(position_x);
     console.log(position_y);
+    */
 
     window_id++;
 
@@ -74,8 +78,10 @@ function makeWindow(title, iframe_url, width, height, position_x, position_y, ma
                     detail: { id: window_id },
                 });
                 panel.dispatchEvent(event);
+                /*
                 console.log(target_main);
                 console.log("new event built");
+                */
             }
         });
     }
