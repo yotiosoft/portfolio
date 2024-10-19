@@ -13,12 +13,15 @@ body {
     display: table;
 }
 
-#squash_point {
-    color: white;
+#squash_game {
+    text-align: center;
 }
 
-.squash_canvas {
-    margin-left: 25px;
+#squash_point {
+    color: white;
+    width: 90%;
+    padding-left: 10px;
+    text-align: left;
 }
 
 .over_canvas_print {

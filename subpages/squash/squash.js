@@ -125,6 +125,10 @@ function game(canvas, ctx, racket_x, ball_x, ball_y, dx, dy, print_obj) {
     canvas.onmousemove = ev => {
         racket_x = ev.offsetX;
     }
+    // （スマホ向け）タッチイベント
+    canvas.ontouchmove = ev => {
+        racket_x = ev.touches[0].clientX - canvas.getBoundingClientRect().left;
+    }
 
     // 描画の更新
     var new_ball_x, new_ball_y, new_dx, new_dy;
