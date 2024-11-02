@@ -1,5 +1,5 @@
-const width = 350;
-const height = 350;
+const width = window.innerWidth - 20;
+const height = window.innerHeight - 50;
 const ball_size = 10;
 const racket_width = 50;
 const racket_height = 10;
