@@ -63,7 +63,7 @@ function move_ball(x, y, dx, dy, racket_x, racket_y, point) {
         game_over = true;
     }
     // ラケットに当たったら...
-    if (y + dy > racket_y && x + dx > racket_x && x + dx < racket_x + racket_width) {
+    if (y + dy == racket_y && x + dx > racket_x && x + dx < racket_x + racket_width) {
         // 跳ね返る
         dy = -dy;
         // +10点
