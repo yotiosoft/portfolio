@@ -1,78 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yotio</title>
-    <link rel="icon" type="image/png" href="/img/logo.png">
-    <!-- loading jsPanel css -->
-    <link href="jspanel/dist/jspanel.css" rel="stylesheet">
-    <!-- style css -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body id="main_body">
-    <!-- Background -->
-
-    <!-- loading jsPanel javascript -->
-    <script src="jspanel/dist/jspanel.js"></script>
-    <!-- optionally load jsPanel extensions -->
-    <script src="jspanel/dist/extensions/contextmenu/jspanel.contextmenu.js"></script>
-    <script src="jspanel/dist/extensions/hint/jspanel.hint.js"></script>
-    <script src="jspanel/dist/extensions/modal/jspanel.modal.js"></script>
-    <script src="jspanel/dist/extensions/tooltip/jspanel.tooltip.js"></script>
-    <script src="jspanel/dist/extensions/dock/jspanel.dock.js"></script>
-    
-    <!-- my window script -->
-    <script src="js/window.js"></script>
-
-    <script>
-        if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
-            // スマホ用の配置
-            // HP
-            makeWindowAutoPos("Welcome", "./subpages/welcome/", 400, 500, true);
+    <title>Welcome</title>
+    <link href="./subpages/welcome/style.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #273c75;
+            text-align: center;
+            color: white;
+            padding-top: 10px;
         }
-        else {
-            // その他（PCなど）
-            // Welcome
-            makeWindowAutoPos("Welcome", "./subpages/welcome/", 950, 550, false);
 
-            // terminal
-            makeWindowAutoPos("Terminal", "https://ysh.yotiosoft.com", 500, 550, false);
+        .block p {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
 
-            // Information
-            makeWindowAutoPos("Information", "./subpages/information/", 400, 160, false);
-
-            // reset next window position
-            resetWindowPos();
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+            }
         }
     </script>
-
-    <!-- 右下からアイコンを並べていく -->
-    <div id="icon" style="position: fixed; right: 10px; bottom: 10px;">
-        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Welcome', './subpages/welcome/', 950, 550, false)">
-            <img src="img/icon.svg" alt="icon" width="50px" height="50px">
-            Welcome
-        </div>
-
-        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Terminal', 'https://ysh.yotiosoft.com', 500, 550, false)">
-            <img src="img/cmd.svg" alt="icon" width="50px" height="50px">
-            ysh
-        </div>
-
-        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Information', './subpages/information/', 400, 160, false)">
-            <img src="img/information.svg" alt="icon" width="50px" height="50px">
-            Information
-        </div>
-
-        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Clock', './subpages/clock/', 300, 160, false)">
-            <img src="img/clock.svg" alt="icon" width="50px" height="50px">
-            Clock
-        </div>
-
-        <div class="desktop-icon" onclick="resetWindowPos(); makeWindowAutoPos('Squash', './subpages/squash/', 450, 450, false)">
-            <img src="img/tennis.svg" alt="icon" width="50px" height="50px">
-            Squash
-        </div>
+    <script type="module" src="./subpages/welcome/3d.js"></script>
+</head>
+<body>
+    <div class="block">
+        <!--<img src="../../img/icon.svg" alt="icon" width="100px" height="100px">-->
+        <canvas id="myCanvas" style="width: 400px; height: 400px;"></canvas>
+        <div style="margin-top: 40px;"></div>
+        yotio.jp<br>
+        近日公開予定<br>
+        <br>
+        <a href="https://yotiosoft.com">YotioSoft へ</a>
     </div>
 </body>
 </html>
