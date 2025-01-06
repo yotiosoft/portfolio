@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>Welcome</title>
+    <link href="./subpages/welcome/style.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #273c75;
+            text-align: center;
+            color: white;
+            padding-top: 10px;
+        }
+
+        .block p {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="./subpages/welcome/3d.js"></script>
+</head>
+<body>
+    <div class="block">
+        <!--<img src="../../img/icon.svg" alt="icon" width="100px" height="100px">-->
+        <canvas id="myCanvas" style="width: 400px; height: 400px;"></canvas>
+        <div style="margin-top: 40px;"></div>
+        yotio.jp<br>
+        近日公開予定<br>
+        <br>
+        <a href="https://yotiosoft.com">YotioSoft へ</a>
+    </div>
+</body>
+</html>
